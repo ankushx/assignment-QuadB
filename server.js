@@ -7,7 +7,7 @@ const port = 3000;
 
 
 app.use(cors());
-const mongoURI="mongodb+srv://ankush:ankush@blog.lmgy47u.mongodb.net/Internship_QuadB?retryWrites=true&w=majority"
+const mongoURI="mongodb+srv://<username>:<password>@<cluster-url>/<database-name>?retryWrites=true&w=majority"
 //const mongoURI = 'mongodb+srv://<username>:<password>@<cluster-url>/<database-name>?retryWrites=true&w=majority';
 
 mongoose.connect(mongoURI, { useNewUrlParser: true, useUnifiedTopology: true })
