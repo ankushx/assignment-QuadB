@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" href="//use.fontawesome.com/releases/v5.0.7/css/all.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>HodlInfo</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin-top: 5px;
+      padding: 0;
+    }
+    .topbar{
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .first{
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 3px;
+      
+    }
+    .second{
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 3px;
+      
+    }
+    .first > div{
+      border: 1px solid;
+      border-radius: 5px;
+      padding: 5px;
+    }
+    
+
+    body {
+      font-family: -apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen,Ubuntu,Cantarell,Fira Sans,Droid Sans,Helvetica Neue,sans-serif;
+    -webkit-font-smoothing: antialiased;
+      color: #fff;
+   
+      background-color: #192d28;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+    .img{
+      font-size: 36px;
+      text-align: center;
+    }
+    img {
+      height: 30px;
+     
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-bottom: 30px;
+      background-color:  #192d28;
+    }
+
+    th, td {
+      padding: 10px;
+      text-align: center;
+      border-bottom: 1px solid #ddd;
+    }
+
+    th {
+      background-color:  #192d28;
+    }
+
+    .footer {
+      text-align: center;
+      margin-top: 50px;
+    }
+
+    .footer p {
+      color: #888;
+      font-size: 12px;
+    }
+    .fourth{
+      width: 100%;
+      height: auto;
+    }
+    .third{
+      text-align: center;
+      margin: 15px;
+    }
+  </style>
+</head>
+<body>
+  <!-- <img src="Screenshot 2023-06-06 213733.png" alt=""> -->
+  <div class="main">
+    <div class="topbar">
+
+      <div class="img">
+        
+        <img src="https://hodlinfo.com/static/media/HODLINFO.8f78fc06.png" alt="">
+      </div>
+      <div class="first">
+        <div>INR</div>
+        <div>TRX</div>
+        <div>BUY TRX</div>
+      </div>
+      <div class="second">
+        <div><i class="fa-solid fa-clock"></i></div>
+        <div>Connect telegram</div>
+        <div><i class="fa-solid fa-toggle-on"></i></div>
+      </div>
+    </div>
+    <div class="third">Best place to trade</div>
+    <span class="subText-heading">Best Price to Trade</span>
+    <img src="Screenshot 2023-06-07 105908.png" alt="" class="fourth">
+    
+   
+    <div class="container">
+     
+      <table id="cryptoTable">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Last Price</th>
+            <th>Buy Price</th>
+            <th>Sell Price</th>
+            <th>Volume</th>
+            <th>Base Unit</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+    </div>
+    
+  </div>
+  <script>
+    fetch('http://localhost:3000/cryptos')
+      .then(response => response.json())
+      .then(data => {
+        const tableBody = document.querySelector('#cryptoTable tbody');
+        data.forEach(crypto => {
+          const row = document.createElement('tr');
+          row.innerHTML = `
+            <td>${crypto.name}</td>
+            <td>${crypto.last}</td>
+            <td>${crypto.buy}</td>
+            <td>${crypto.sell}</td>
+            <td>${crypto.volume}</td>
+            <td>${crypto.base_unit}</td>
+          `;
+          tableBody.appendChild(row);
+        });
+      })
+      .catch(error => {
+        console.error('Error retrieving data:', error);
+      });
+  </script>
+
+  <div class="footer">
+    <p>&copy; 2023 HodlInfo. All rights reserved.</p>
+  </div>
+</body>
+</html>
